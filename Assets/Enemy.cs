@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
+        agent.avoidancePriority = Mathf.RoundToInt(agent.speed * 10);
     }
 
     private void Update()
