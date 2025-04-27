@@ -213,10 +213,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcf232e705746c4881e030ffff96343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 3
-  spawnTimer: 0
+  waveDetails:
+    basicEnemy: 3
+    fastEnemy: 2
   spawnPoint: {fileID: 7297462860390845183}
+  spawnCooldown: 3
+  enemiesToCreate: []
   basicEnemy: {fileID: 7325625646529547780, guid: a648da1eb81f6ec46b40d319bcdd4646,
+    type: 3}
+  fastEnemy: {fileID: 1265797233749571314, guid: 612e0669761ba374fb5e66ccd84d6f94,
     type: 3}
 --- !u!1 &6466704427551572190
 GameObject:
