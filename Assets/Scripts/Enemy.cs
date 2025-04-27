@@ -36,9 +36,13 @@ public class Enemy : MonoBehaviour
         Vector3 newDirection = newTarget - transform.position;
         newDirection.y = 0;
 
-        Quaternion newRotation = Quaternion.LookRotation(newDirection);
+        if (newDirection != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(newDirection);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, turnSpeed * Time.deltaTime);
+        }
+
     }
 
     private Vector3 GetNextWaypoint()
