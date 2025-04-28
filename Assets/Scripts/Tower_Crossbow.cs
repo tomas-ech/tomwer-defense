@@ -1,17 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Tower_Crossbow : Tower
 {
+    private Tower_Crossbow_Visuals visuals;
 
     [Header("Crossbow details")]
     [SerializeField] private Transform gunPoint;
 
-    protected override void Update()
+    protected override void Awake()
     {
-        base.Update();
+        base.Awake();
+        visuals = GetComponent<Tower_Crossbow_Visuals>();
+    }
+
+    protected override void Attack()
+    {
 
         Vector3 directionToEnemy = DirectionToEnemy(gunPoint);
 
@@ -19,5 +23,7 @@ public class Tower_Crossbow : Tower
         {
             Debug.DrawLine(gunPoint.position, hitInfo.point);
         }
+
+        visuals.EnableAttackVisuals(gunPoint.position, hitInfo.point);
     }
 }

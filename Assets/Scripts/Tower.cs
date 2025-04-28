@@ -16,6 +16,13 @@ public class Tower : MonoBehaviour
     [SerializeField] protected float attackRange = 2.5f;
     [SerializeField] protected LayerMask enemyMask;
 
+    private bool canRotate = true;
+
+    protected virtual void Awake()
+    {
+
+    }
+
     protected virtual void Update()
     {
         if (currentEnemy == null)
@@ -53,9 +60,14 @@ public class Tower : MonoBehaviour
         Debug.Log("Attacked at: " + Time.time);
     }
 
+    public void EnableRotation(bool isRotating)
+    {
+        canRotate = isRotating;
+    }
+
     protected virtual void RotateTowardsEnemy()
     {
-        if (currentEnemy == null) return;
+        if (currentEnemy == null || canRotate == false) return;
 
         Vector3 direction = currentEnemy.position - towerHead.position;
 
