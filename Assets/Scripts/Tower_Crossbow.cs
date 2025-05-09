@@ -25,5 +25,6 @@ public class Tower_Crossbow : Tower
         }
 
         visuals.EnableAttackVisuals(gunPoint.position, hitInfo.point);
+        visuals.PlayVFX(attackCooldown);
     }
 }

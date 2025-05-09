@@ -46,7 +46,9 @@ public class Tower : MonoBehaviour
 
     protected bool CanAttack()
     {
-        if (Time.time > lastTimeAttacked + attackCooldown)
+        var angle = Quaternion.Angle(towerHead.rotation, Quaternion.LookRotation(currentEnemy.position - towerHead.position));
+        
+        if (Time.time > lastTimeAttacked + attackCooldown && angle < 5)
         {
             lastTimeAttacked = Time.time;
             return true;
@@ -75,7 +77,7 @@ public class Tower : MonoBehaviour
 
         Vector3 rotation = Quaternion.Lerp(towerHead.rotation, lookDirection, rotationSpeed * Time.deltaTime).eulerAngles;
 
-        towerHead.rotation = Quaternion.Euler(rotation); 
+        towerHead.rotation = Quaternion.Euler(rotation);
     }
 
     protected Vector3 DirectionToEnemy(Transform startPoint)
