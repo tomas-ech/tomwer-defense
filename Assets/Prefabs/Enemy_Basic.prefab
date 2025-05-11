@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 4008595012370666907}
   - component: {fileID: 7228042244536703330}
   - component: {fileID: 1991189624741102539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_Basic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319292bbdd4e3584b91ab7f72b633a3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPointArray: []
+  waypoints: []
   turnSpeed: 10
 --- !u!195 &4008595012370666907
 NavMeshAgent:
