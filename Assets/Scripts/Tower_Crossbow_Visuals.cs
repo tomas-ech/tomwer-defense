@@ -48,7 +48,10 @@ public class Tower_Crossbow_Visuals : MonoBehaviour
 
     public void PlayVFX(float duration)
     {
-        StartCoroutine(ChangeEmission(duration / 2));
+        float timeValue = duration / 2;
+
+        StartCoroutine(ChangeEmission(timeValue));
+        crossbowStrings.MoveRotor(timeValue);
     }
 
     public void EnableAttackVisuals(Vector3 startPoint, Vector3 endPoint)
