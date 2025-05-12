@@ -22,13 +22,11 @@ public class Tower_Crossbow : Tower
 
         if (Physics.Raycast(gunPoint.position, directionToEnemy, out RaycastHit hitInfo))
         {
-            visuals.EnableAttackVisuals(gunPoint.position, hitInfo.point);
-            visuals.PlayVFX(attackCooldown);
 
-            IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
-
-            if (damageable != null)
+            if (hitInfo.transform.TryGetComponent<IDamageable>(out var damageable))
             {
+                visuals.EnableAttackVisuals(gunPoint.position, hitInfo.point);
+                visuals.PlayVFX(attackCooldown);
                 damageable.TakeDamage(damage);
             }
         }
