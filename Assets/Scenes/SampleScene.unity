@@ -3940,14 +3940,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc8310cfb2b16e40b965bf981381114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEnemy: {fileID: 0}
-  attackCooldown: 2
   towerHead: {fileID: 8663200532102717953}
+  attackCooldown: 1.5
   rotationSpeed: 10
   attackRange: 2.5
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
+  damage: 2
   gunPoint: {fileID: 1543811984}
 --- !u!114 &1642178584
 MonoBehaviour:

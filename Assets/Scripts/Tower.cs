@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Transform currentEnemy;
+    private Transform currentEnemy;
 
-    [SerializeField] protected float attackCooldown = 2;
     protected float lastTimeAttacked;
 
     [Header("Tower Setup")]
     [SerializeField] protected Transform towerHead;
+    [SerializeField] protected float attackCooldown = 2;
     [SerializeField] protected float rotationSpeed = 10;
 
     [SerializeField] protected float attackRange = 2.5f;
