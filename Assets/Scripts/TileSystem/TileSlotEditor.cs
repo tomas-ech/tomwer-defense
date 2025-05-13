@@ -130,6 +130,30 @@ public class TileSlotEditor : Editor
         }
 
         GUILayout.EndHorizontal();
+        
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Small Inner Corner", GUILayout.Width(twoButtonWidth)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileHolder>().smallInnerCorner;
+
+            foreach (var item in targets)
+            {
+                ((TileSlot)item).SwitchTitle(newTile);
+            }
+        }
+
+        if (GUILayout.Button("Small Outer Corner", GUILayout.Width(twoButtonWidth)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileHolder>().smallOuterCorner;
+
+            foreach (var item in targets)
+            {
+                ((TileSlot)item).SwitchTitle(newTile);
+            }
+        }
+
+        GUILayout.EndHorizontal();
 
         GUILayout.Label("Hill Options", centeredStyle);
 

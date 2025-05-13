@@ -8,7 +8,9 @@ public class TileHolder : MonoBehaviour
 
     [Header("Corners")]
     public GameObject innerCorner;
+    public GameObject smallInnerCorner;
     public GameObject outerCorner;
+    public GameObject smallOuterCorner;
 
     [Header("Hills")]
     public GameObject upperHill;

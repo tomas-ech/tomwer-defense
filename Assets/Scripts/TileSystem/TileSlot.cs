@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class TileSlot : MonoBehaviour
     private MeshRenderer meshRenderer => GetComponent<MeshRenderer>();
     private MeshFilter meshFilter => GetComponent<MeshFilter>();
     private Collider myCollider => GetComponent<Collider>();
+    private NavMeshSurface myNavMesh => GetComponentInParent<NavMeshSurface>();
 
     public void SwitchTitle(GameObject tileReference)
     {
@@ -18,16 +20,9 @@ public class TileSlot : MonoBehaviour
         meshRenderer.material = newTile.GetMaterial();
 
         UpdateCollider(newTile.GetCollider());
-
-        foreach (GameObject item in GetAllChildren())
-        {
-            DestroyImmediate(item);
-        }
-
-        foreach (GameObject item in newTile.GetAllChildren())
-        {
-            Instantiate(item, transform);
-        }
+        UpdateChildren(newTile);
+        UpdateLayer(tileReference);
+        UpdateNavMesh();
     }
 
     public Material GetMaterial() => meshRenderer.sharedMaterial;
@@ -45,6 +40,8 @@ public class TileSlot : MonoBehaviour
 
         return children;
     }
+
+    private void UpdateNavMesh() => myNavMesh.BuildNavMesh();
 
     public void UpdateCollider(Collider newCollider)
     {
@@ -69,6 +66,29 @@ public class TileSlot : MonoBehaviour
         }
     }
 
-    public void RotateTile(int direction) => transform.Rotate(0, 90 * direction, 0);
-    public void AdjustHigh(int direction) => transform.position += new Vector3(0, 0.1f * direction, 0);
+    private void UpdateChildren(TileSlot newTile)
+    {
+        foreach (GameObject item in GetAllChildren())
+        {
+            DestroyImmediate(item);
+        }
+
+        foreach (GameObject item in newTile.GetAllChildren())
+        {
+            Instantiate(item, transform);
+        }
+    }
+
+    public void UpdateLayer(GameObject reference) => gameObject.layer = reference.layer;
+
+    public void RotateTile(int direction)
+    {
+        transform.Rotate(0, 90 * direction, 0);
+        UpdateNavMesh();
+    }
+    public void AdjustHigh(int direction)
+    {
+        UpdateNavMesh();
+        transform.position += new Vector3(0, 0.1f * direction, 0);
+    }
 }
