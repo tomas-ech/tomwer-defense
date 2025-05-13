@@ -22,7 +22,7 @@ public class TileSlotEditor : Editor
                 ((TileSlot)item).SwitchTitle(newTile);
             }
         }
-        
+
         if (GUILayout.Button("Road", GUILayout.Width(buttonWidth)))
         {
             GameObject newTile = FindFirstObjectByType<TileHolder>().road;
@@ -48,5 +48,31 @@ public class TileSlotEditor : Editor
         }
 
         GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Inner Corner", GUILayout.Width(buttonWidth)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileHolder>().innerCorner;
+
+            foreach (var item in targets)
+            {
+                ((TileSlot)item).SwitchTitle(newTile);
+            }
+        }
+
+        if (GUILayout.Button("Outer Corner", GUILayout.Width(buttonWidth)))
+        {
+            GameObject newTile = FindFirstObjectByType<TileHolder>().outerCorner;
+
+            foreach (var item in targets)
+            {
+                ((TileSlot)item).SwitchTitle(newTile);
+            }
+        }
+
+        GUILayout.EndHorizontal();
+
     }
+
 }
