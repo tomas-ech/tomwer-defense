@@ -68,4 +68,7 @@ public class TileSlot : MonoBehaviour
             newMeshCollider.convex = original.convex;
         }
     }
+
+    public void RotateTile(int direction) => transform.Rotate(0, 90 * direction, 0);
+    public void AdjustHigh(int direction) => transform.position += new Vector3(0, 0.1f * direction, 0);
 }
