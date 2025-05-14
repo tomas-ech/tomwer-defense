@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,7 +7,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private NavMeshAgent agent;
     private int waypointIndex;
 
-    [SerializeField] private Transform[] waypoints;
+    [SerializeField] private  List<Transform> waypoints;
     [SerializeField] private float turnSpeed = 10f;
 
     public int healthPoints = 4;
@@ -18,9 +19,14 @@ public class Enemy : MonoBehaviour, IDamageable
         agent.avoidancePriority = Mathf.RoundToInt(agent.speed * 10);
     }
 
-    private void Start()
+    public void SetUpEnemy(List<Waypoint> currentWaypoints)
     {
-        waypoints = FindFirstObjectByType<WaypointManager>().GetWaypoints;
+        waypoints = new();
+
+        foreach (var item in currentWaypoints)
+        {
+            waypoints.Add(item.transform);
+        }
     }
 
     private void Update()
@@ -49,7 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private Vector3 GetNextWaypoint()
     {
-        if (waypointIndex >= waypoints.Length)
+        if (waypointIndex >= waypoints.Count)
         {
             return transform.position;
         }
